@@ -44,6 +44,9 @@ if __name__ == "__main__":
     else:
         logger.setLevel(logging.INFO)
 
+    #led animation
+    MoonBoard.omg()
+
     #problems
     led_layout = LED_LAYOUT.get(args.led_layout) if args.led_layout is not None else None
     MOONBOARD = MoonBoard(args.driver_type, led_layout)

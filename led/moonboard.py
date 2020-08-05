@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from bibliopixel.colors import COLORS
 from bibliopixel import Matrix
+from bibliopixel import Strip
 from bibliopixel.drivers.PiWS281X import PiWS281X
 from bibliopixel.drivers.dummy_driver import DriverDummy
 from bibliopixel.drivers.SPI.WS2801 import  WS2801
@@ -127,6 +128,22 @@ class MoonBoard:
         if self.animation is not None:
             self.animation.stop()
 
+    def omg():
+        import time
+        npixels = 200
+        npixelsON = 1
+        driver = WS2801(npixels, dev='/dev/spidev0.1',spi_interface= SPI_INTERFACES.PERIPHERY,spi_speed=1)
+        layout = Strip(driver,  brightness=100)
+        p=0
+        for p in range(npixels+npixelsON):
+            if p>=1:
+                layout.setOff(p - npixelsON)
+            if p <= npixels:
+                layout.set(p, COLORS.yellow)
+            layout.update()
+            time.sleep(1.0/npixels)
+        layout.all_off()
+        layout.push_to_driver()
 
 class TestAnimation:
     COLOR=[COLORS.Green, COLORS.Blue]
@@ -154,6 +171,7 @@ if __name__=="__main__":
     led_layout = LED_LAYOUT['nest'] if args.special_nest_layout else None
     MOONBOARD = MoonBoard(args.driver_type,led_layout )
     print("Run animation,")
+    MoonBoard.omg()
     #animation=
     #MoonBoard.run_animation()
     #MOONBOARD.layout.fillScreen(COLORS.red)
