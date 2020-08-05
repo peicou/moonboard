@@ -9,8 +9,8 @@ import string
 from bibliopixel.drivers.spi_interfaces import SPI_INTERFACES
 BRIGHTNESS = 100
 X_GRID_NAMES = string.ascii_uppercase[0:11]
-MOONBOARD_PIXELS_COUNT = 198
-HOLDS_COLORS = {'START':COLORS.green,'TOP':COLORS.red,'MOVES':COLORS.blue}
+MOONBOARD_PIXELS_COUNT = 200
+HOLDS_COLORS = {'START':COLORS.green,'MOVES':COLORS.blue,'TOP':COLORS.red}
 
 def init_pixels(type, npixels = MOONBOARD_PIXELS_COUNT, brightness=BRIGHTNESS):
     
@@ -39,11 +39,11 @@ def show_problem(pixels, holds, hold_colors = {} , offset=0, brightness=BRIGHTNE
     pixels.update()
     #pixels.setMasterBrightness(brightness)
 
-def test_leds(pixels, log_func , sleep_func, duration = 20.0, color = COLORS.red):
+def test_leds(pixels, log_func , sleep_func, duration = 1.0, color = COLORS.red):
     """"""
     npixels = pixels.numLEDs
     log_func({'progress': 0,'report': 'start test'})
-    npixelsON = 18
+    npixelsON = 1
     p=0
     for p in range(npixels+npixelsON):
         if p>=1:
