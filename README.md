@@ -1,3 +1,30 @@
+# Addendum
+
+This is mostly the excellent code written by [Enzo SR](https://github.com/e-sr/moonboard) with some modifications:
+- Used a Raspberry Pi Zero W
+- Added some scripts to halt/resume using a push (arcade) button
+
+Here are some notes for reference:
+
+## setup
+
+Latest raspbian lite (headless). Clone the repository and make sure run.sh runs ok. requirements_...W.txt has a pip freeze of what it looks like.
+- The SPI pins used are pin 19 - BCM 10 (MOSI), and pin 23 - BCM 11 (SCLK)
+- The power/halt button uses pin 5 - BCM 3 (SCL), and any ground
+- I used an LED wired from pin 8 - BCM 14 (TXD) to a ground to show power on/off as the system takes ~1 min to initialize
+
+## other notes
+
+install python3, python3-dev
+install pip, easy_install3.7 requests
+    sudo easy_install 3.7 websockets
+    sudo /usr/bin/python3 -m pip  install python-periphereal
+enable spi in raspi-config
+
+There are two services that need to run: 
+- moonboard.service (fires up run.sh which in turn runs run.py)
+- com.moonboard.service (fires up moonboard_BLE_service.py)
+
 # moonboard
 
 This project contain software (written in python) and informations to build a led system for the MOONBOARD using a raspberrypi with integrated Bluetooth.
