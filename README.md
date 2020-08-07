@@ -20,6 +20,7 @@ install pip, easy_install3.7 requests
     sudo easy_install 3.7 websockets
     sudo /usr/bin/python3 -m pip  install python-periphereal
 enable spi in raspi-config
+enable uart by adding "enable_uart=1" to /boot/config.txt
 
 There are two services that need to run: 
 - moonboard.service (fires up run.sh which in turn runs run.py)
